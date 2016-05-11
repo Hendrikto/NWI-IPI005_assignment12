@@ -13,7 +13,7 @@ import mandelmodel.AreaFiller;
  */
 public class MandelFX extends Application {
 
-    public static final int GRID_WIDTH = 800, GRID_HEIGHT = 800;
+    public static final int GRID_WIDTH = 1000, GRID_HEIGHT = 1000;
     private Canvas canvas;
 
     @Override
