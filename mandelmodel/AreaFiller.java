@@ -18,7 +18,9 @@ public class AreaFiller {
     private static final ColorMap COLOR_MAP = new ColorMap(MAX_ITERATIONS);
 
     /**
-     * fills the canvas with some arbitrarily chosen pattern
+     * Fill the canvas with some arbitrarily chosen pattern.
+     *
+     * @param canvas the canvas to fill
      */
     public void fill(Canvas canvas) {
         int imageWith = (int) canvas.getWidth();
