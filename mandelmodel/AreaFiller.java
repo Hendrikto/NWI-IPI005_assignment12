@@ -15,7 +15,7 @@ public class AreaFiller {
 
     public static final int MAX_ITERATIONS = 20;
 
-    private static final ColorMap colorMap = new ColorMap(MAX_ITERATIONS);
+    private static final ColorMap COLOR_MAP = new ColorMap(MAX_ITERATIONS);
 
     /**
      * fills the canvas with some arbitrarily chosen pattern
@@ -27,7 +27,7 @@ public class AreaFiller {
         for (int i = 0; i < imageWith; i++) {
             for (int j = 0; j < imageHeight; j++) {
                 int colorIndex = i / 5 * imageWith / 5 + j / 5;
-                pixelWriter.setColor(i, j, colorMap.getColor(colorIndex));
+                pixelWriter.setColor(i, j, COLOR_MAP.getColor(colorIndex));
             }
         }
     }
