@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import mandelmodel.AreaFiller;
 
@@ -31,11 +32,16 @@ public class MandelFX extends Application {
 
     private Scene makeScene() {
         canvas = new Canvas(GRID_WIDTH, GRID_HEIGHT);
+        canvas.setOnMouseClicked(this::handleMouseClick);
         AreaFiller areaFiller = new AreaFiller();
         areaFiller.fill(canvas);
         Group root = new Group(canvas);
         Scene scene = new Scene(root);
         return scene;
+    }
+
+    private void handleMouseClick(MouseEvent e) {
+        System.out.printf("x: %f y: %f\n", e.getX(), e.getY());
     }
 
 }
