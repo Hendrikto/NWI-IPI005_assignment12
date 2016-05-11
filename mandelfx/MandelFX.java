@@ -13,7 +13,9 @@ import mandelmodel.AreaFiller;
  */
 public class MandelFX extends Application {
 
-    public static final int GRID_WIDTH = 1000, GRID_HEIGHT = 1000;
+    public static final int GRID_WIDTH = 1000;
+    public static final int GRID_HEIGHT = 1000;
+
     private Canvas canvas;
 
     @Override
@@ -23,19 +25,17 @@ public class MandelFX extends Application {
         primaryStage.show();
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     private Scene makeScene() {
         canvas = new Canvas(GRID_WIDTH, GRID_HEIGHT);
         AreaFiller areaFiller = new AreaFiller();
-
         areaFiller.fill(canvas);
-
         Group root = new Group(canvas);
         Scene scene = new Scene(root);
         return scene;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
 }
