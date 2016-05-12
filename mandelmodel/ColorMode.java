@@ -41,7 +41,7 @@ public enum ColorMode {
     Colorful {
         @Override
         public Color getColor(int i, int max) {
-            return Color.hsb((double) i / max * 360, 1, 1);
+            return Color.hsb((double) i / max * 360, 1, (double) i / max);
         }
     };
 
