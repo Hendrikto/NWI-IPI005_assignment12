@@ -11,42 +11,24 @@ import javafx.scene.paint.Color;
 public class ColorMap {
 
     private Color[] rgbColors;
-    private static final int MAXRGB = 256;
 
     /**
      * Creates and fills the array with the specified size
      *
      * @param maxColorIndex the size of the table
+     * @param mode the color mode to use
      */
-    public ColorMap(int maxColorIndex) {
+    public ColorMap(int maxColorIndex, ColorMode mode) {
         rgbColors = new Color[maxColorIndex];
-        randomColorSet();
+        setColor(mode);
     }
 
     /**
-     * @return a random value between 0 and MAXRGB
+     * Fill the color map using the color mode.
      */
-    private static int randomRGB() {
-        return (int) (Math.random() * MAXRGB);
-    }
-
-    /**
-     * fills the rgbColors array with random Color values
-     */
-    private void randomColorSet() {
+    private void setColor(ColorMode mode) {
         for (int i = 0; i < rgbColors.length; i++) {
-            rgbColors[i] = Color.rgb(randomRGB(), randomRGB(), randomRGB());
-        }
-    }
-
-    /**
-     * Fill the color map with a grayscale.
-     */
-    private void grayscaleColorSet() {
-        int gray;
-        for (int i = 0; i < rgbColors.length; i++) {
-            gray = (int) ((double) i / rgbColors.length * MAXRGB);
-            rgbColors[i] = Color.rgb(gray, gray, gray);
+            rgbColors[i] = mode.getColor(i, rgbColors.length);
         }
     }
 

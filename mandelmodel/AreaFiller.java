@@ -15,7 +15,7 @@ public class AreaFiller {
 
     public static final int MAX_ITERATIONS = 20;
 
-    private static final ColorMap COLOR_MAP = new ColorMap(MAX_ITERATIONS);
+    private static final ColorMap COLOR_MAP = new ColorMap(MAX_ITERATIONS, ColorMode.Grayscale);
 
     /**
      * Fill the canvas with some arbitrarily chosen pattern.
