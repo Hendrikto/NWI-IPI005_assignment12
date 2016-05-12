@@ -11,8 +11,7 @@ public enum ColorMode {
     Grayscale {
         @Override
         public Color getColor(int i, int max) {
-            int gray = fraction(i, max);
-            return Color.rgb(gray, gray, gray);
+            return Color.gray((double) i / max);
         }
     },
     Random {
@@ -20,6 +19,7 @@ public enum ColorMode {
         public Color getColor(int i, int max) {
             return Color.rgb(randomRGB(), randomRGB(), randomRGB());
         }
+
         private int randomRGB() {
             return (int) (Math.random() * MAX_RGB);
         }
