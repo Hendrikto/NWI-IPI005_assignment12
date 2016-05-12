@@ -23,6 +23,24 @@ public enum ColorMode {
         private int randomRGB() {
             return (int) (Math.random() * MAX_RGB);
         }
+    },
+    Red {
+        @Override
+        public Color getColor(int i, int max) {
+            return Color.rgb(fraction(i, max), 0, 0);
+        }
+    },
+    Green {
+        @Override
+        public Color getColor(int i, int max) {
+            return Color.rgb(0, fraction(i, max), 0);
+        }
+    },
+    Blue {
+        @Override
+        public Color getColor(int i, int max) {
+            return Color.rgb(0, 0, fraction(i, max));
+        }
     };
 
     private static final int MAX_RGB = 255;
