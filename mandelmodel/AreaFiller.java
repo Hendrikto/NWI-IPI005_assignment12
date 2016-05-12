@@ -31,6 +31,9 @@ public class AreaFiller {
         this(iterations, ColorMode.ColorfulInverted);
     }
 
+    /**
+     * Standard constructor.
+     */
     public AreaFiller() {
         this(20);
     }
