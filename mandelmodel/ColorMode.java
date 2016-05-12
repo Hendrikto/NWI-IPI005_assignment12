@@ -37,6 +37,12 @@ public enum ColorMode {
         public Color getColor(int i, int max) {
             return Color.color(0, 0, (double) i / max);
         }
+    },
+    Colorful {
+        @Override
+        public Color getColor(int i, int max) {
+            return Color.hsb((double) i / max * 360, 1, 1);
+        }
     };
 
     public abstract Color getColor(int i, int max);
