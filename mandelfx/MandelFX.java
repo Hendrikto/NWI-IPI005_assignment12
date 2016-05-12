@@ -34,7 +34,7 @@ public class MandelFX extends Application {
         canvas = new Canvas(GRID_WIDTH, GRID_HEIGHT);
         canvas.setOnMouseClicked(this::handleMouseClick);
         AreaFiller areaFiller = new AreaFiller();
-        areaFiller.fill(canvas);
+        areaFiller.fill(canvas, -2, -2, 250);
         Group root = new Group(canvas);
         Scene scene = new Scene(root);
         return scene;

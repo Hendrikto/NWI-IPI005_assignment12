@@ -1,35 +1,60 @@
 package mandelmodel;
 
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
-import javafx.scene.paint.Color;
 
 /**
- * A skeleton class illustrating the use of a pixelWriter
+ * Fill a canvas with a representation of the Mandelbrot set.
  *
+ * @author Hendrik Werner // s4549775
+ * @author Jasper Haasdijk // s4449754
  * @author Sjaak Smetsers
  */
 public class AreaFiller {
 
-    public static final int MAX_ITERATIONS = 20;
+    private int iterations;
+    private ColorMap colorMap;
 
-    private static final ColorMap COLOR_MAP = new ColorMap(MAX_ITERATIONS, ColorMode.Grayscale);
+    /**
+     * @param iterations the maximum number of iterations per point
+     * @param mode the color mode
+     */
+    public AreaFiller(int iterations, ColorMode mode) {
+        this.iterations = iterations;
+        colorMap = new ColorMap(iterations, ColorMode.ColorfulInverted);
+    }
+
+    /**
+     * @param iterations the maximum number of iterations per point
+     */
+    public AreaFiller(int iterations) {
+        this(iterations, ColorMode.ColorfulInverted);
+    }
+
+    public AreaFiller() {
+        this(20);
+    }
 
     /**
      * Fill the canvas with some arbitrarily chosen pattern.
      *
      * @param canvas the canvas to fill
+     * @param x staring position on the x-axis
+     * @param y starting position on the y-axis
+     * @param scale the scaling factor
      */
-    public void fill(Canvas canvas) {
+    public void fill(Canvas canvas, double x, double y, int scale) {
         int imageWith = (int) canvas.getWidth();
         int imageHeight = (int) canvas.getHeight();
         final PixelWriter pixelWriter = canvas.getGraphicsContext2D().getPixelWriter();
         for (int i = 0; i < imageWith; i++) {
             for (int j = 0; j < imageHeight; j++) {
-                int colorIndex = i / 5 * imageWith / 5 + j / 5;
-                pixelWriter.setColor(i, j, COLOR_MAP.getColor(colorIndex));
+                int colorIndex = MandelbrotGenerator.getValue(
+                        x + (double) i / scale,
+                        y + (double) j / scale,
+                        iterations
+                );
+                pixelWriter.setColor(i, j, colorMap.getColor(colorIndex));
             }
         }
     }
