@@ -21,7 +21,7 @@ public class AreaFiller {
      */
     public AreaFiller(int iterations, ColorMode mode) {
         this.iterations = iterations;
-        colorMap = new ColorMap(iterations, ColorMode.ColorfulInverted);
+        colorMap = new ColorMap(iterations, mode);
     }
 
     /**
