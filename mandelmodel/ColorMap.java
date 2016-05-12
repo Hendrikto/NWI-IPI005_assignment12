@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
  */
 public class ColorMap {
 
-    private Color[] rgbColors;
+    private final Color[] rgbColors;
 
     /**
      * Creates and fills the array with the specified size
