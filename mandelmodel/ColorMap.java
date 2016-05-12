@@ -40,6 +40,17 @@ public class ColorMap {
     }
 
     /**
+     * Fill the color map with a grayscale.
+     */
+    private void grayscaleColorSet() {
+        int gray;
+        for (int i = 0; i < rgbColors.length; i++) {
+            gray = (int) ((double) i / rgbColors.length * MAXRGB);
+            rgbColors[i] = Color.rgb(gray, gray, gray);
+        }
+    }
+
+    /**
      * @param colorIndex the index of the requested color
      * @return element of rgbColors at index colorIndex modulo the size of the
      * array
