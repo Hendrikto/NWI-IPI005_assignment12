@@ -15,6 +15,7 @@ import mandelmodel.AreaFiller;
 public class MandelFX extends Application {
 
     public static final int GRID_SIZE = 1000;
+    private static final int DEFAULT_SCALE = GRID_SIZE / 4;
 
     private Canvas canvas;
 
@@ -33,7 +34,7 @@ public class MandelFX extends Application {
         canvas = new Canvas(GRID_SIZE, GRID_SIZE);
         canvas.setOnMouseClicked(this::handleMouseClick);
         AreaFiller areaFiller = new AreaFiller();
-        areaFiller.fill(canvas, -2, -2, 250);
+        areaFiller.fill(canvas, -2, -2, DEFAULT_SCALE);
         Group root = new Group(canvas);
         Scene scene = new Scene(root);
         return scene;
