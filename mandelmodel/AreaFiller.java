@@ -47,10 +47,10 @@ public class AreaFiller {
      * @param scale the scaling factor
      */
     public void fill(Canvas canvas, double x, double y, int scale) {
-        int imageWith = (int) canvas.getWidth();
+        int imageWidth = (int) canvas.getWidth();
         int imageHeight = (int) canvas.getHeight();
         final PixelWriter pixelWriter = canvas.getGraphicsContext2D().getPixelWriter();
-        for (int i = 0; i < imageWith; i++) {
+        for (int i = 0; i < imageWidth; i++) {
             for (int j = 0; j < imageHeight; j++) {
                 int colorIndex = MandelbrotGenerator.getValue(
                         x + (double) i / scale,
