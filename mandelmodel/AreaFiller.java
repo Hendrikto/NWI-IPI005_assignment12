@@ -15,37 +15,37 @@ public class AreaFiller {
     private int iterations;
     private int scale;
     private int size;
-    private double startX;
-    private double startY;
+    private double centerX;
+    private double centerY;
     private ColorMap colorMap;
     private MandelbrotMap mandelMap;
 
     /**
      * @param size the size of the area to fill
-     * @param startX the x value of the upper left corner
-     * @param startY the y value of the upper left corner
+     * @param centerX the x value of the center position
+     * @param centerY the y value of the center position
      * @param scale the scaling factor
      * @param iterations the maximum number of iterations per point
      * @param mode the color mode
      */
-    public AreaFiller(int size, double startX, double startY, int scale, int iterations, ColorMode mode) {
+    public AreaFiller(int size, double centerX, double centerY, int scale, int iterations, ColorMode mode) {
         this.size = size;
-        this.startX = startX;
-        this.startY = startY;
+        this.centerX = centerX;
+        this.centerY = centerY;
         this.scale = scale;
         this.iterations = iterations;
         colorMap = new ColorMap(iterations, mode);
-        mandelMap = new MandelbrotMap(size, startX, startY, scale, iterations);
+        mandelMap = new MandelbrotMap(size, centerX, centerY, scale, iterations);
     }
 
     /**
      * @param size the size of the area to fill
-     * @param startX the x value of the upper left corner
-     * @param startY the y value of the upper left corner
+     * @param centerX the x value of the center position
+     * @param centerY the y value of the center position
      * @param scale the scaling factor
      */
-    public AreaFiller(int size, double startX, double startY, int scale) {
-        this(size, startX, startY, scale, 20, ColorMode.ColorfulInverted);
+    public AreaFiller(int size, double centerX, double centerY, int scale) {
+        this(size, centerX, centerY, scale, 20, ColorMode.ColorfulInverted);
     }
 
     /**

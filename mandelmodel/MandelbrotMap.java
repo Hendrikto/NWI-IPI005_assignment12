@@ -9,7 +9,9 @@ public class MandelbrotMap {
 
     private final int[][] values;
 
-    public MandelbrotMap(int size, double startX, double startY, int scale, int iterations) {
+    public MandelbrotMap(int size, double centerX, double centerY, int scale, int iterations) {
+        double startX = centerX - size / (scale * 2);
+        double startY = centerY - size / (scale * 2);
         values = new int[size][size];
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
