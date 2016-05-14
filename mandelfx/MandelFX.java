@@ -17,6 +17,8 @@ public class MandelFX extends Application {
     public static final int GRID_SIZE = 1000;
     private static final int DEFAULT_SCALE = GRID_SIZE / 4;
 
+    private AreaFiller filler;
+
     private Canvas canvas;
 
     @Override
@@ -33,8 +35,8 @@ public class MandelFX extends Application {
     private Scene makeScene() {
         canvas = new Canvas(GRID_SIZE, GRID_SIZE);
         canvas.setOnMouseClicked(this::handleMouseClick);
-        AreaFiller areaFiller = new AreaFiller(GRID_SIZE, 0, 0, DEFAULT_SCALE);
-        areaFiller.fill(canvas);
+        filler = new AreaFiller(GRID_SIZE, 0, 0, DEFAULT_SCALE);
+        filler.fill(canvas);
         Group root = new Group(canvas);
         Scene scene = new Scene(root);
         return scene;
