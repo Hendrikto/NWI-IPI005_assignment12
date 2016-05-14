@@ -64,4 +64,19 @@ public class AreaFiller {
         }
     }
 
+    /**
+     * Zoom to a new center by a given factor.
+     *
+     * @param centerX
+     * @param centerY
+     * @param zoomFactor
+     */
+    public void zoom(double centerX, double centerY, int zoomFactor) {
+        this.centerX = centerX;
+        this.centerY = centerY;
+        iterations = iterations * zoomFactor;
+        scale = scale * zoomFactor;
+        mandelMap = new MandelbrotMap(size, centerX, centerY, scale, iterations);
+    }
+
 }
