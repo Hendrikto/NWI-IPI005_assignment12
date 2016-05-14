@@ -49,7 +49,7 @@ public class AreaFiller {
     }
 
     /**
-     * Fill the canvas with some arbitrarily chosen pattern.
+     * Fill the canvas with a pattern based on the Mandelbrot values.
      *
      * @param canvas the canvas to fill
      */
