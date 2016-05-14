@@ -15,8 +15,6 @@ public class AreaFiller {
     private int iterations;
     private int scale;
     private int size;
-    private double centerX;
-    private double centerY;
     private ColorMap colorMap;
     private MandelbrotMap mandelMap;
 
@@ -30,8 +28,6 @@ public class AreaFiller {
      */
     public AreaFiller(int size, double centerX, double centerY, int scale, int iterations, ColorMode mode) {
         this.size = size;
-        this.centerX = centerX;
-        this.centerY = centerY;
         this.scale = scale;
         this.iterations = iterations;
         colorMap = new ColorMap(iterations, mode);
@@ -72,8 +68,6 @@ public class AreaFiller {
      * @param zoomFactor
      */
     public void zoom(double centerX, double centerY, int zoomFactor) {
-        this.centerX = centerX;
-        this.centerY = centerY;
         iterations = iterations * zoomFactor;
         scale = scale * zoomFactor;
         mandelMap = new MandelbrotMap(size, centerX, centerY, scale, iterations);
