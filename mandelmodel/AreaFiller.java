@@ -50,14 +50,10 @@ public class AreaFiller {
         int imageWidth = (int) canvas.getWidth();
         int imageHeight = (int) canvas.getHeight();
         final PixelWriter pixelWriter = canvas.getGraphicsContext2D().getPixelWriter();
+        MandelbrotMap map = new MandelbrotMap(imageWidth, x, y, scale, iterations);
         for (int i = 0; i < imageWidth; i++) {
             for (int j = 0; j < imageHeight; j++) {
-                int colorIndex = MandelbrotGenerator.getValue(
-                        x + (double) i / scale,
-                        y + (double) j / scale,
-                        iterations
-                );
-                pixelWriter.setColor(i, j, colorMap.getColor(colorIndex));
+                pixelWriter.setColor(i, j, colorMap.getColor(map.getValue(i, j)));
             }
         }
     }
