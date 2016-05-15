@@ -27,6 +27,7 @@ public class AreaFiller {
     public AreaFiller(Area area, int size, int iterations, ColorMode mode) {
         this.size = size;
         this.iterations = iterations;
+        this.area = area;
         colorMap = new ColorMap(iterations, mode);
         mandelMap = new MandelbrotMap(area, size, iterations);
     }
