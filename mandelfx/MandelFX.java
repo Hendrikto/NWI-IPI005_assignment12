@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mandelmodel.Area;
 import mandelmodel.AreaFiller;
+import mandelmodel.ColorMode;
 
 /**
  *
@@ -48,6 +50,7 @@ public class MandelFX extends Application {
     private TextField inputIterations;
     private Button btnDraw;
     private Button btnUpdate;
+    private ChoiceBox<ColorMode> colorChoice;
 
     /**
      * Start the app.
@@ -135,7 +138,9 @@ public class MandelFX extends Application {
         grid.setVgap(SPACING);
         grid.add(new Label("Iterations:"), 0, 0);
         grid.add(inputIterations, 1, 0);
-        grid.add(btnUpdate, 1, 1);
+        grid.add(new Label("Color:"), 0, 1);
+        grid.add(colorChoice, 1, 1);
+        grid.add(btnUpdate, 1, 2);
         return grid;
     }
 
@@ -151,6 +156,9 @@ public class MandelFX extends Application {
         btnDraw.setOnAction(this::handleDrawButtonAction);
         btnUpdate = new Button("Update");
         btnUpdate.setOnAction(this::handleUpdateButtonAction);
+        colorChoice = new ChoiceBox<>();
+        colorChoice.getItems().addAll(ColorMode.values());
+        colorChoice.setValue(ColorMode.ColorfulInverted);
     }
 
     /**
