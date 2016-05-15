@@ -29,7 +29,7 @@ public class AreaFiller {
         this.iterations = iterations;
         this.area = area;
         colorMap = new ColorMap(iterations, mode);
-        mandelMap = new MandelbrotMap(area, size, iterations);
+        updateMandelMap();
     }
 
     /**
@@ -72,7 +72,7 @@ public class AreaFiller {
                 width,
                 height
         );
-        mandelMap = new MandelbrotMap(area, size, iterations);
+        updateMandelMap();
     }
 
     /**
@@ -80,6 +80,10 @@ public class AreaFiller {
      */
     public void setArea(Area area) {
         this.area = area;
+    }
+
+    private void updateMandelMap() {
+        mandelMap = new MandelbrotMap(area, size, iterations);
     }
 
 }
