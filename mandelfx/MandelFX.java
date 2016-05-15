@@ -90,14 +90,7 @@ public class MandelFX extends Application {
     }
 
     private Pane makeControls() {
-        inputCenterX = new TextField("0");
-        inputCenterY = new TextField("0");
-        inputScale = new TextField("250");
-        inputIterations = new TextField("20");
-        btnDraw = new Button("Draw");
-        btnDraw.setOnAction(this::handleDrawButtonAction);
-        btnUpdate = new Button("Update");
-        btnUpdate.setOnAction(this::handleUpdateButtonAction);
+        instantiateControls();
         Label areaLabel = new Label("Area");
         areaLabel.setFont(Font.font(20));
         Label detailsLabel = new Label("Details");
@@ -135,6 +128,17 @@ public class MandelFX extends Application {
         grid.add(inputIterations, 1, 0);
         grid.add(btnUpdate, 1, 1);
         return grid;
+    }
+
+    private void instantiateControls() {
+        inputCenterX = new TextField("0");
+        inputCenterY = new TextField("0");
+        inputScale = new TextField("250");
+        inputIterations = new TextField("20");
+        btnDraw = new Button("Draw");
+        btnDraw.setOnAction(this::handleDrawButtonAction);
+        btnUpdate = new Button("Update");
+        btnUpdate.setOnAction(this::handleUpdateButtonAction);
     }
 
     /**
