@@ -89,6 +89,9 @@ public class MandelFX extends Application {
         return scene;
     }
 
+    /**
+     * @return the control panel
+     */
     private Pane makeControls() {
         instantiateControls();
         Label areaLabel = new Label("Area");
@@ -106,6 +109,9 @@ public class MandelFX extends Application {
         return controls;
     }
 
+    /**
+     * @return the area controls
+     */
     private Pane makeAreaControls() {
         GridPane grid = new GridPane();
         grid.setHgap(SPACING);
@@ -120,6 +126,9 @@ public class MandelFX extends Application {
         return grid;
     }
 
+    /**
+     * @return the detail controls
+     */
     private Pane makeDetailControls() {
         GridPane grid = new GridPane();
         grid.setHgap(SPACING);
@@ -130,6 +139,9 @@ public class MandelFX extends Application {
         return grid;
     }
 
+    /**
+     * Instantiate control elements.
+     */
     private void instantiateControls() {
         inputCenterX = new TextField("0");
         inputCenterY = new TextField("0");
@@ -186,6 +198,11 @@ public class MandelFX extends Application {
         selection.setHeight(Math.abs(startY - e.getY()));
     }
 
+    /**
+     * Handle the draw button.
+     *
+     * @param e the action event
+     */
     private void handleDrawButtonAction(ActionEvent e) {
         double size = GRID_SIZE / Double.parseDouble(inputScale.getText());
         System.out.println(size);
@@ -198,6 +215,11 @@ public class MandelFX extends Application {
         filler.fill(canvas);
     }
 
+    /**
+     * Handle the update button.
+     *
+     * @param e the action event
+     */
     private void handleUpdateButtonAction(ActionEvent e) {
         filler.setIterations(Integer.parseInt(inputIterations.getText()));
         filler.fill(canvas);
