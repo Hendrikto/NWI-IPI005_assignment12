@@ -75,4 +75,11 @@ public class AreaFiller {
         mandelMap = new MandelbrotMap(area, size, iterations);
     }
 
+    /**
+     * @param area the area to set
+     */
+    public void setArea(Area area) {
+        this.area = area;
+    }
+
 }
