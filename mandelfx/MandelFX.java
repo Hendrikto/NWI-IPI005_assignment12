@@ -66,7 +66,7 @@ public class MandelFX extends Application {
         selection.setStroke(Color.GREENYELLOW);
         selection.setFill(Color.TRANSPARENT);
         root = new Group(canvas);
-        root.setOnMouseDragged(this::handleMouseDrag);
+        root.setOnMouseDragged(this::handleMouseDragged);
         Scene scene = new Scene(root);
         return scene;
     }
@@ -106,7 +106,7 @@ public class MandelFX extends Application {
      *
      * @param e the mouse event
      */
-    private void handleMouseDrag(MouseEvent e) {
+    private void handleMouseDragged(MouseEvent e) {
         if (!root.getChildren().contains(selection)) {
             root.getChildren().add(selection);
         }
