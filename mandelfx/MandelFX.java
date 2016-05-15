@@ -13,6 +13,8 @@ import mandelmodel.AreaFiller;
 
 /**
  *
+ * @author Hendrik Werner // s4549775
+ * @author Jasper Haasdijk // s4449754
  * @author Sjaak Smetsers
  */
 public class MandelFX extends Application {
@@ -23,10 +25,18 @@ public class MandelFX extends Application {
     private double startX;
     private double startY;
 
+    /**
+     * JavaFX
+     */
     private Group root;
     private Canvas canvas;
     private Rectangle selection;
 
+    /**
+     * Start the app.
+     *
+     * @param primaryStage the primary stage
+     */
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Mandelbrot");
@@ -34,10 +44,18 @@ public class MandelFX extends Application {
         primaryStage.show();
     }
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Create the scene.
+     *
+     * @return the scene
+     */
     private Scene makeScene() {
         canvas = new Canvas(GRID_SIZE, GRID_SIZE);
         canvas.setOnMousePressed(this::handleMousePressed);
@@ -53,11 +71,21 @@ public class MandelFX extends Application {
         return scene;
     }
 
+    /**
+     * Handle a mouse button press.
+     *
+     * @param e the mouse event
+     */
     private void handleMousePressed(MouseEvent e) {
         startX = e.getX();
         startY = e.getY();
     }
 
+    /**
+     * Handle a mouse button release.
+     *
+     * @param e the mouse event
+     */
     private void handleMouseReleased(MouseEvent e) {
         if (startX == e.getX() && startY == e.getY()) {
             filler.zoom(e.getX(), e.getY(), 2);
@@ -73,6 +101,11 @@ public class MandelFX extends Application {
         root.getChildren().remove(selection);
     }
 
+    /**
+     * Handle dragging the mouse.
+     *
+     * @param e the mouse event
+     */
     private void handleMouseDrag(MouseEvent e) {
         if (!root.getChildren().contains(selection)) {
             root.getChildren().add(selection);
