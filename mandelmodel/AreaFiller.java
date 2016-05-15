@@ -98,6 +98,7 @@ public class AreaFiller {
      */
     public void setArea(Area area) {
         this.area = area;
+        updateMandelMap();
     }
 
     /**
