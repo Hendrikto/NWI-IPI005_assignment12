@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mandelmodel.Area;
 import mandelmodel.AreaFiller;
@@ -44,7 +45,9 @@ public class MandelFX extends Application {
     private TextField inputCenterX;
     private TextField inputCenterY;
     private TextField inputScale;
+    private TextField inputIterations;
     private Button btnDraw;
+    private Button btnUpdate;
 
     /**
      * Start the app.
@@ -90,10 +93,23 @@ public class MandelFX extends Application {
         inputCenterX = new TextField("0");
         inputCenterY = new TextField("0");
         inputScale = new TextField("250");
+        inputIterations = new TextField("20");
         btnDraw = new Button("Draw");
         btnDraw.setOnAction(this::handleDrawButtonAction);
-        VBox controls = new VBox(makeAreaControls());
+        btnUpdate = new Button("Update");
+        btnUpdate.setOnAction(this::handleUpdateButtonAction);
+        Label areaLabel = new Label("Area");
+        areaLabel.setFont(Font.font(20));
+        Label detailsLabel = new Label("Details");
+        detailsLabel.setFont(Font.font(20));
+        VBox controls = new VBox(
+                areaLabel,
+                makeAreaControls(),
+                detailsLabel,
+                makeDetailControls()
+        );
         controls.setPadding(new Insets(SPACING));
+        controls.setSpacing(SPACING * 2);
         return controls;
     }
 
@@ -108,6 +124,16 @@ public class MandelFX extends Application {
         grid.add(new Label("scaling factor:"), 0, 2);
         grid.add(inputScale, 1, 2);
         grid.add(btnDraw, 1, 3);
+        return grid;
+    }
+
+    private Pane makeDetailControls() {
+        GridPane grid = new GridPane();
+        grid.setHgap(SPACING);
+        grid.setVgap(SPACING);
+        grid.add(new Label("Iterations:"), 0, 0);
+        grid.add(inputIterations, 1, 0);
+        grid.add(btnUpdate, 1, 1);
         return grid;
     }
 
