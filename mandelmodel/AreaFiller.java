@@ -100,6 +100,9 @@ public class AreaFiller {
         this.area = area;
     }
 
+    /**
+     * Update the map of Mandelbrot values.
+     */
     private void updateMandelMap() {
         mandelMap = new MandelbrotMap(area, size, iterations);
     }
