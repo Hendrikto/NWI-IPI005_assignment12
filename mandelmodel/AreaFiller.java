@@ -76,6 +76,24 @@ public class AreaFiller {
     }
 
     /**
+     * Zoom in on an area.
+     *
+     * @param startX the x value of the upper left corner of the area
+     * @param startY the y value of the upper left corner of the area
+     * @param widthOnCanvas the width of the area on the canvas
+     * @param heightOnCanvas the height of the area on the canvas
+     */
+    public void zoom(double startX, double startY, double widthOnCanvas, double heightOnCanvas) {
+        area = new Area(
+                area.upperLeftX + (startX / size) * area.width,
+                area.upperLeftY + (startY / size) * area.height,
+                (widthOnCanvas / size) * area.width,
+                (heightOnCanvas / size) * area.height
+        );
+        updateMandelMap();
+    }
+
+    /**
      * @param area the area to set
      */
     public void setArea(Area area) {
