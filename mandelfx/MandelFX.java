@@ -92,6 +92,12 @@ public class MandelFX extends Application {
         inputScale = new TextField("250");
         btnDraw = new Button("Draw");
         btnDraw.setOnAction(this::handleDrawButtonAction);
+        VBox controls = new VBox(makeAreaControls());
+        controls.setPadding(new Insets(SPACING));
+        return controls;
+    }
+
+    private Pane makeAreaControls() {
         GridPane grid = new GridPane();
         grid.setHgap(SPACING);
         grid.setVgap(SPACING);
@@ -102,9 +108,7 @@ public class MandelFX extends Application {
         grid.add(new Label("scaling factor:"), 0, 2);
         grid.add(inputScale, 1, 2);
         grid.add(btnDraw, 1, 3);
-        VBox controls = new VBox(grid);
-        controls.setPadding(new Insets(SPACING));
-        return controls;
+        return grid;
     }
 
     /**
