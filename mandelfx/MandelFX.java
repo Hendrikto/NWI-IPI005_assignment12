@@ -1,10 +1,17 @@
 package mandelfx;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -20,6 +27,7 @@ import mandelmodel.AreaFiller;
 public class MandelFX extends Application {
 
     public static final int GRID_SIZE = 1000;
+    private static final int SPACING = 10;
 
     private AreaFiller filler;
     private double startX;
@@ -28,9 +36,13 @@ public class MandelFX extends Application {
     /**
      * JavaFX
      */
-    private Group root;
+    private Group canvasContainer;
     private Canvas canvas;
     private Rectangle selection;
+    private TextField inputCenterX;
+    private TextField inputCenterY;
+    private TextField inputScale;
+    private Button btnDraw;
 
     /**
      * Start the app.
@@ -65,10 +77,41 @@ public class MandelFX extends Application {
         selection = new Rectangle();
         selection.setStroke(Color.GREENYELLOW);
         selection.setFill(Color.TRANSPARENT);
-        root = new Group(canvas);
-        root.setOnMouseDragged(this::handleMouseDragged);
+        canvasContainer = new Group(canvas);
+        canvasContainer.setOnMouseDragged(this::handleMouseDragged);
+        HBox root = new HBox(canvasContainer, makeControls());
         Scene scene = new Scene(root);
         return scene;
+    }
+
+    private Pane makeControls() {
+        inputCenterX = new TextField("0");
+        inputCenterY = new TextField("0");
+        inputScale = new TextField("250");
+        btnDraw = new Button("Draw");
+        btnDraw.setOnAction(e -> {
+            double size = GRID_SIZE / Double.parseDouble(inputScale.getText());
+            System.out.println(size);
+            filler.setArea(new Area(
+                    Double.parseDouble(inputCenterX.getText()) - size / 2,
+                    Double.parseDouble(inputCenterY.getText()) - size / 2,
+                    size,
+                    size
+            ));
+            filler.fill(canvas);
+        });
+        GridPane grid = new GridPane();
+        grid.setHgap(SPACING);
+        grid.setVgap(SPACING);
+        grid.setPadding(new Insets(SPACING));
+        grid.add(new Label("center x:"), 0, 0);
+        grid.add(inputCenterX, 1, 0);
+        grid.add(new Label("center y:"), 0, 1);
+        grid.add(inputCenterY, 1, 1);
+        grid.add(new Label("scaling factor:"), 0, 2);
+        grid.add(inputScale, 1, 2);
+        grid.add(btnDraw, 1, 3);
+        return grid;
     }
 
     /**
@@ -98,7 +141,7 @@ public class MandelFX extends Application {
             );
         }
         filler.fill(canvas);
-        root.getChildren().remove(selection);
+        canvasContainer.getChildren().remove(selection);
     }
 
     /**
@@ -107,8 +150,8 @@ public class MandelFX extends Application {
      * @param e the mouse event
      */
     private void handleMouseDragged(MouseEvent e) {
-        if (!root.getChildren().contains(selection)) {
-            root.getChildren().add(selection);
+        if (!canvasContainer.getChildren().contains(selection)) {
+            canvasContainer.getChildren().add(selection);
         }
         selection.setX(Math.min(startX, e.getX()));
         selection.setY(Math.min(startY, e.getY()));
