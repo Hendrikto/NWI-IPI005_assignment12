@@ -66,7 +66,7 @@ public class AreaFiller {
     public void zoom(double x, double y, double zoomFactor) {
         double width = area.width / zoomFactor;
         double height = area.height / zoomFactor;
-        this.area = new Area(
+        area = new Area(
                 area.upperLeftX + (x / size) * area.width - width / 2,
                 area.upperLeftY + (y / size) * area.height - height / 2,
                 width,
