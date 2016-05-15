@@ -9,15 +9,13 @@ public class MandelbrotMap {
 
     private final int[][] values;
 
-    public MandelbrotMap(int size, double centerX, double centerY, int scale, int iterations) {
-        double startX = centerX - size / (scale * 2);
-        double startY = centerY - size / (scale * 2);
+    public MandelbrotMap(Area area, int size, int iterations) {
         values = new int[size][size];
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
                 values[x][y] = MandelbrotGenerator.getValue(
-                        startX + (double) x / scale,
-                        startY + (double) y / scale,
+                        area.upperLeftX + x * (area.width / size),
+                        area.upperLeftY + y * (area.height / size),
                         iterations
                 );
             }
