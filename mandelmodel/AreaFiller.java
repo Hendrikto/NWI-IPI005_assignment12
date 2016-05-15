@@ -15,6 +15,7 @@ public class AreaFiller {
     private int iterations;
     private int size;
     private ColorMap colorMap;
+    private ColorMode colorMode;
     private MandelbrotMap mandelMap;
     private Area area;
 
@@ -29,6 +30,7 @@ public class AreaFiller {
         this.iterations = iterations;
         this.area = area;
         colorMap = new ColorMap(iterations, mode);
+        colorMode = mode;
         updateMandelMap();
     }
 
