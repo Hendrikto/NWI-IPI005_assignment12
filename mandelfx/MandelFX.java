@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import mandelmodel.Area;
 import mandelmodel.AreaFiller;
 
 /**
@@ -15,7 +16,6 @@ import mandelmodel.AreaFiller;
 public class MandelFX extends Application {
 
     public static final int GRID_SIZE = 1000;
-    private static final int DEFAULT_SCALE = GRID_SIZE / 4;
 
     private AreaFiller filler;
 
@@ -35,7 +35,7 @@ public class MandelFX extends Application {
     private Scene makeScene() {
         canvas = new Canvas(GRID_SIZE, GRID_SIZE);
         canvas.setOnMouseClicked(this::handleMouseClick);
-        filler = new AreaFiller(GRID_SIZE, 0, 0, DEFAULT_SCALE);
+        filler = new AreaFiller(new Area(-2, -2, 4, 4), GRID_SIZE);
         filler.fill(canvas);
         Group root = new Group(canvas);
         Scene scene = new Scene(root);
