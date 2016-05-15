@@ -13,35 +13,30 @@ import javafx.scene.image.PixelWriter;
 public class AreaFiller {
 
     private int iterations;
-    private int scale;
     private int size;
     private ColorMap colorMap;
     private MandelbrotMap mandelMap;
+    private Area area;
 
     /**
-     * @param size the size of the area to fill
-     * @param centerX the x value of the center position
-     * @param centerY the y value of the center position
-     * @param scale the scaling factor
+     * @param area the area to draw
+     * @param size the size of the canvas
      * @param iterations the maximum number of iterations per point
      * @param mode the color mode
      */
-    public AreaFiller(int size, double centerX, double centerY, int scale, int iterations, ColorMode mode) {
+    public AreaFiller(Area area, int size, int iterations, ColorMode mode) {
         this.size = size;
-        this.scale = scale;
         this.iterations = iterations;
         colorMap = new ColorMap(iterations, mode);
-        mandelMap = new MandelbrotMap(size, centerX, centerY, scale, iterations);
+        mandelMap = new MandelbrotMap(area, size, iterations);
     }
 
     /**
-     * @param size the size of the area to fill
-     * @param centerX the x value of the center position
-     * @param centerY the y value of the center position
-     * @param scale the scaling factor
+     * @param area the area to draw
+     * @param size the size of the canvas
      */
-    public AreaFiller(int size, double centerX, double centerY, int scale) {
-        this(size, centerX, centerY, scale, 20, ColorMode.ColorfulInverted);
+    public AreaFiller(Area area, int size) {
+        this(area, size, 20, ColorMode.ColorfulInverted);
     }
 
     /**
