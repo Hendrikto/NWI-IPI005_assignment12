@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -94,7 +95,6 @@ public class MandelFX extends Application {
         GridPane grid = new GridPane();
         grid.setHgap(SPACING);
         grid.setVgap(SPACING);
-        grid.setPadding(new Insets(SPACING));
         grid.add(new Label("center x:"), 0, 0);
         grid.add(inputCenterX, 1, 0);
         grid.add(new Label("center y:"), 0, 1);
@@ -102,7 +102,9 @@ public class MandelFX extends Application {
         grid.add(new Label("scaling factor:"), 0, 2);
         grid.add(inputScale, 1, 2);
         grid.add(btnDraw, 1, 3);
-        return grid;
+        VBox controls = new VBox(grid);
+        controls.setPadding(new Insets(SPACING));
+        return controls;
     }
 
     /**
