@@ -104,6 +104,15 @@ public class AreaFiller {
     }
 
     /**
+     * @param iterations the iterations to set
+     */
+    public void setIterations(int iterations) {
+        this.iterations = iterations;
+        colorMap = new ColorMap(iterations, colorMode);
+        updateMandelMap();
+    }
+
+    /**
      * Update the map of Mandelbrot values.
      */
     private void updateMandelMap() {
