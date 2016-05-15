@@ -168,4 +168,8 @@ public class MandelFX extends Application {
         filler.fill(canvas);
     }
 
+    private void handleUpdateButtonAction(ActionEvent e) {
+        // TODO
+    }
+
 }
