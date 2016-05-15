@@ -169,7 +169,8 @@ public class MandelFX extends Application {
     }
 
     private void handleUpdateButtonAction(ActionEvent e) {
-        // TODO
+        filler.setIterations(Integer.parseInt(inputIterations.getText()));
+        filler.fill(canvas);
     }
 
 }
