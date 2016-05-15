@@ -230,6 +230,7 @@ public class MandelFX extends Application {
      */
     private void handleUpdateButtonAction(ActionEvent e) {
         filler.setIterations(Integer.parseInt(inputIterations.getText()));
+        filler.setColorMode(colorChoice.getValue());
         filler.fill(canvas);
     }
 
