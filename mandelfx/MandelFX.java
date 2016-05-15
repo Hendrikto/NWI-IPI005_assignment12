@@ -1,6 +1,7 @@
 package mandelfx;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -89,17 +90,7 @@ public class MandelFX extends Application {
         inputCenterY = new TextField("0");
         inputScale = new TextField("250");
         btnDraw = new Button("Draw");
-        btnDraw.setOnAction(e -> {
-            double size = GRID_SIZE / Double.parseDouble(inputScale.getText());
-            System.out.println(size);
-            filler.setArea(new Area(
-                    Double.parseDouble(inputCenterX.getText()) - size / 2,
-                    Double.parseDouble(inputCenterY.getText()) - size / 2,
-                    size,
-                    size
-            ));
-            filler.fill(canvas);
-        });
+        btnDraw.setOnAction(this::handleDrawButtonAction);
         GridPane grid = new GridPane();
         grid.setHgap(SPACING);
         grid.setVgap(SPACING);
@@ -157,6 +148,18 @@ public class MandelFX extends Application {
         selection.setY(Math.min(startY, e.getY()));
         selection.setWidth(Math.abs(startX - e.getX()));
         selection.setHeight(Math.abs(startY - e.getY()));
+    }
+
+    private void handleDrawButtonAction(ActionEvent e) {
+        double size = GRID_SIZE / Double.parseDouble(inputScale.getText());
+        System.out.println(size);
+        filler.setArea(new Area(
+                Double.parseDouble(inputCenterX.getText()) - size / 2,
+                Double.parseDouble(inputCenterY.getText()) - size / 2,
+                size,
+                size
+        ));
+        filler.fill(canvas);
     }
 
 }
