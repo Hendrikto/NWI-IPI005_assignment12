@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
  * Different color modes for the ColorMap.
  *
  * @author Hendrik Werner // s4549775
+ * @author Jasper Haasdijk // s4449754
  */
 public enum ColorMode {
     Grayscale {
@@ -51,6 +52,11 @@ public enum ColorMode {
         }
     };
 
+    /**
+     * @param i the index
+     * @param max the maximum index
+     * @return a color based off of i and max
+     */
     public abstract Color getColor(int i, int max);
 
 }

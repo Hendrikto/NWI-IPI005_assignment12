@@ -5,8 +5,9 @@ import javafx.scene.paint.Color;
 /**
  * Converts indexes (ranging from 0 to maxColorIndex) to RGB colors
  *
+ * @author Hendrik Werner // s4549775
+ * @author Jasper Haasdijk // s4449754
  * @author Sjaak Smetsers
- * @version 06-05-2016
  */
 public class ColorMap {
 
