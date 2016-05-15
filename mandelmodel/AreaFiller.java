@@ -113,6 +113,15 @@ public class AreaFiller {
     }
 
     /**
+     * @param colorMode the colorMode to set
+     */
+    public void setColorMode(ColorMode colorMode) {
+        this.colorMode = colorMode;
+        updateColorMap();
+        updateMandelMap();
+    }
+
+    /**
      * Update the map of Mandelbrot values.
      */
     private void updateMandelMap() {
