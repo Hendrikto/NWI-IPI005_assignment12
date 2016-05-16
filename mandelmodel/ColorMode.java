@@ -9,6 +9,12 @@ import javafx.scene.paint.Color;
  * @author Jasper Haasdijk // s4449754
  */
 public enum ColorMode {
+    BlackWhite {
+        @Override
+        public Color getColor(int i, int max) {
+            return i % 2 == 0 ? Color.BLACK : Color.WHITE;
+        }
+    },
     Grayscale {
         @Override
         public Color getColor(int i, int max) {
