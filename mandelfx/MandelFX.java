@@ -138,9 +138,9 @@ public class MandelFX extends Application {
         grid.setVgap(SPACING);
         grid.add(new Label("Iterations:"), 0, 0);
         grid.add(inputIterations, 1, 0);
+        grid.add(btnUpdate, 2, 0);
         grid.add(new Label("Color:"), 0, 1);
         grid.add(colorChoice, 1, 1);
-        grid.add(btnUpdate, 1, 2);
         return grid;
     }
 
