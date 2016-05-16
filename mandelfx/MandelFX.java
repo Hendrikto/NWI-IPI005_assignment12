@@ -49,7 +49,7 @@ public class MandelFX extends Application {
     private TextField inputScale;
     private TextField inputIterations;
     private Button btnDraw;
-    private Button btnUpdate;
+    private Button btnUpdateIterations;
     private ChoiceBox<ColorMode> colorChoice;
 
     /**
@@ -138,7 +138,7 @@ public class MandelFX extends Application {
         grid.setVgap(SPACING);
         grid.add(new Label("Iterations:"), 0, 0);
         grid.add(inputIterations, 1, 0);
-        grid.add(btnUpdate, 2, 0);
+        grid.add(btnUpdateIterations, 2, 0);
         grid.add(new Label("Color:"), 0, 1);
         grid.add(colorChoice, 1, 1);
         return grid;
@@ -154,14 +154,13 @@ public class MandelFX extends Application {
         inputIterations = new TextField("20");
         btnDraw = new Button("Draw");
         btnDraw.setOnAction(this::handleDrawButtonAction);
-        btnUpdate = new Button("Update");
-        btnUpdate.setOnAction(this::handleUpdateButtonAction);
+        btnUpdateIterations = new Button("Update");
+        btnUpdateIterations.setOnAction(this::handleUpdateIterations);
         colorChoice = new ChoiceBox<>();
         colorChoice.getItems().addAll(ColorMode.values());
         colorChoice.setValue(ColorMode.ColorfulInverted);
         colorChoice.setOnAction(e -> {
-            filler.setColorMode(colorChoice.getValue());
-            filler.fill(canvas);
+
         });
     }
 
@@ -227,11 +226,11 @@ public class MandelFX extends Application {
     }
 
     /**
-     * Handle the update button.
+     * Update the iterations with data from the ui.
      *
      * @param e the action event
      */
-    private void handleUpdateButtonAction(ActionEvent e) {
+    private void handleUpdateIterations(ActionEvent e) {
         filler.setIterations(Integer.parseInt(inputIterations.getText()));
         filler.fill(canvas);
     }
