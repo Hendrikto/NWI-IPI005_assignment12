@@ -159,6 +159,10 @@ public class MandelFX extends Application {
         colorChoice = new ChoiceBox<>();
         colorChoice.getItems().addAll(ColorMode.values());
         colorChoice.setValue(ColorMode.ColorfulInverted);
+        colorChoice.setOnAction(e -> {
+            filler.setColorMode(colorChoice.getValue());
+            filler.fill(canvas);
+        });
     }
 
     /**
@@ -230,7 +234,6 @@ public class MandelFX extends Application {
      */
     private void handleUpdateButtonAction(ActionEvent e) {
         filler.setIterations(Integer.parseInt(inputIterations.getText()));
-        filler.setColorMode(colorChoice.getValue());
         filler.fill(canvas);
     }
 
