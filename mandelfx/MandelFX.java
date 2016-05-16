@@ -217,7 +217,6 @@ public class MandelFX extends Application {
      */
     private void handleDrawButtonAction(ActionEvent e) {
         double size = GRID_SIZE / Double.parseDouble(inputScale.getText());
-        System.out.println(size);
         filler.setArea(new Area(
                 Double.parseDouble(inputCenterX.getText()) - size / 2,
                 Double.parseDouble(inputCenterY.getText()) - size / 2,
