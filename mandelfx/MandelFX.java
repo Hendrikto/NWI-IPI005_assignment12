@@ -179,7 +179,13 @@ public class MandelFX extends Application {
      */
     private void handleMouseReleased(MouseEvent e) {
         if (startX == e.getX() && startY == e.getY()) {
-            filler.zoom(e.getX(), e.getY(), 2);
+            double zoom;
+            if (e.isShiftDown()) {
+                zoom = .5;
+            } else {
+                zoom = 2;
+            }
+            filler.zoom(e.getX(), e.getY(), zoom);
         } else {
             filler.zoom(
                     Math.min(startX, e.getX()),
