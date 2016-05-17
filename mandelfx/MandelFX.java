@@ -33,6 +33,8 @@ public class MandelFX extends Application {
 
     private static final int GRID_SIZE = 1000;
     private static final int SPACING = 10;
+    private static final double ZOOM_IN = 2;
+    private static final double ZOOM_OUT = .5;
 
     private AreaFiller filler;
     private double startX;
@@ -181,9 +183,9 @@ public class MandelFX extends Application {
         if (startX == e.getX() && startY == e.getY()) {
             double zoom;
             if (e.isShiftDown()) {
-                zoom = .5;
+                zoom = ZOOM_OUT;
             } else {
-                zoom = 2;
+                zoom = ZOOM_IN;
             }
             filler.zoom(e.getX(), e.getY(), zoom);
         } else {
