@@ -31,15 +31,14 @@ public class MandelbrotGenerator {
      * @return the Mandelbrot value at (a, b)
      */
     public static int getValue(final double a, final double b, int maxIterations) {
-        int iterations = 0;
+        int iterations;
         double x = a;
         double y = b;
-        while (x * x + y * y < 4 && iterations < maxIterations) {
+        for (iterations = 0; x * x + y * y < 4 && iterations < maxIterations; iterations++) {
             double oldX = x;
             double oldY = y;
             x = oldX * oldX - oldY * oldY + a;
             y = 2 * oldX * oldY + b;
-            iterations++;
         }
         return iterations;
     }
