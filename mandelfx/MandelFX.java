@@ -46,7 +46,7 @@ public class MandelFX extends Application {
     private Rectangle selection;
     private TextField inputCenterX;
     private TextField inputCenterY;
-    private TextField inputScale;
+    private TextField inputSize;
     private TextField inputIterations;
     private Button btnDraw;
     private Button btnUpdateIterations;
@@ -123,8 +123,8 @@ public class MandelFX extends Application {
         grid.add(inputCenterX, 1, 0);
         grid.add(new Label("center y:"), 0, 1);
         grid.add(inputCenterY, 1, 1);
-        grid.add(new Label("scaling factor:"), 0, 2);
-        grid.add(inputScale, 1, 2);
+        grid.add(new Label("size:"), 0, 2);
+        grid.add(inputSize, 1, 2);
         grid.add(btnDraw, 1, 3);
         return grid;
     }
@@ -150,7 +150,7 @@ public class MandelFX extends Application {
     private void instantiateControls() {
         inputCenterX = new TextField("0");
         inputCenterY = new TextField("0");
-        inputScale = new TextField("250");
+        inputSize = new TextField("4");
         inputIterations = new TextField("20");
         btnDraw = new Button("Draw");
         btnDraw.setOnAction(this::handleDrawButtonAction);
@@ -213,7 +213,7 @@ public class MandelFX extends Application {
      * @param e the action event
      */
     private void handleDrawButtonAction(ActionEvent e) {
-        double size = GRID_SIZE / Double.parseDouble(inputScale.getText());
+        double size = Double.parseDouble(inputSize.getText());
         filler.setArea(new Area(
                 Double.parseDouble(inputCenterX.getText()) - size / 2,
                 Double.parseDouble(inputCenterY.getText()) - size / 2,
