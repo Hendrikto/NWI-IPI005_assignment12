@@ -31,7 +31,7 @@ import mandelmodel.ColorMode;
  */
 public class MandelFX extends Application {
 
-    public static final int GRID_SIZE = 1000;
+    private static final int GRID_SIZE = 1000;
     private static final int SPACING = 10;
 
     private AreaFiller filler;
