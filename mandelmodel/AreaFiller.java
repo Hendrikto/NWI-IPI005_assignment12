@@ -118,7 +118,6 @@ public class AreaFiller {
     public void setColorMode(ColorMode colorMode) {
         this.colorMode = colorMode;
         updateColorMap();
-        updateMandelMap();
     }
 
     /**
