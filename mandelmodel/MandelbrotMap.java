@@ -11,6 +11,27 @@ public class MandelbrotMap {
     private final int[][] values;
 
     /**
+     * Get the Mandelbrot value at (a, b) using the given number of iterations.
+     *
+     * @param a the x-coordinate
+     * @param b the y-coordinate
+     * @param maxIterations the number of iterations
+     * @return the Mandelbrot value at (a, b)
+     */
+    private static int getValue(final double a, final double b, int maxIterations) {
+        int iterations;
+        double x = a;
+        double y = b;
+        for (iterations = 0; x * x + y * y < 4 && iterations < maxIterations; iterations++) {
+            double oldX = x;
+            double oldY = y;
+            x = oldX * oldX - oldY * oldY + a;
+            y = 2 * oldX * oldY + b;
+        }
+        return iterations;
+    }
+
+    /**
      * @param area the area to calculate Mandelbrot values for
      * @param size the width and height of the map
      * @param iterations the maximum number of iterations
@@ -19,7 +40,7 @@ public class MandelbrotMap {
         values = new int[size][size];
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
-                values[x][y] = MandelbrotGenerator.getValue(
+                values[x][y] = getValue(
                         area.upperLeftX + x * (area.width / size),
                         area.upperLeftY + y * (area.height / size),
                         iterations
