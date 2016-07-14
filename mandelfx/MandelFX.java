@@ -37,6 +37,7 @@ public class MandelFX extends Application {
     private static final double ZOOM_OUT = .5;
 
     private AreaFiller filler;
+    private boolean mouseDragged;
     private double startX;
     private double startY;
 
@@ -180,7 +181,7 @@ public class MandelFX extends Application {
      * @param e the mouse event
      */
     private void handleMouseReleased(MouseEvent e) {
-        if (startX == e.getX() && startY == e.getY()) {
+        if (!mouseDragged) {
             double zoom;
             if (e.isShiftDown()) {
                 zoom = ZOOM_OUT;
@@ -196,6 +197,7 @@ public class MandelFX extends Application {
                     Math.abs(startY - e.getY())
             );
         }
+        mouseDragged = false;
         filler.fill(canvas);
         canvasContainer.getChildren().remove(selection);
     }
@@ -206,6 +208,7 @@ public class MandelFX extends Application {
      * @param e the mouse event
      */
     private void handleMouseDragged(MouseEvent e) {
+        mouseDragged = true;
         if (!canvasContainer.getChildren().contains(selection)) {
             canvasContainer.getChildren().add(selection);
         }
