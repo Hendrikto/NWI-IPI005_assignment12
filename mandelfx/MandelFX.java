@@ -189,13 +189,7 @@ public class MandelFX extends Application {
                     Math.abs(startY - e.getY())
             );
         } else {
-            double zoom;
-            if (e.isShiftDown()) {
-                zoom = ZOOM_OUT;
-            } else {
-                zoom = ZOOM_IN;
-            }
-            filler.zoom(e.getX(), e.getY(), zoom);
+            filler.zoom(e.getX(), e.getY(), e.isShiftDown() ? ZOOM_OUT : ZOOM_IN);
         }
         mouseDragged = false;
         filler.fill(canvas);
