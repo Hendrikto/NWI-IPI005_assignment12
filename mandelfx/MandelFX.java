@@ -90,6 +90,7 @@ public class MandelFX extends Application {
         selection.setFill(Color.TRANSPARENT);
         canvasContainer = new Group(canvas);
         canvasContainer.setOnMouseDragged(this::handleMouseDragged);
+        canvasContainer.getChildren().add(selection);
         HBox root = new HBox(canvasContainer, makeControls());
         Scene scene = new Scene(root);
         return scene;
@@ -193,7 +194,7 @@ public class MandelFX extends Application {
         }
         mouseDragged = false;
         filler.fill(canvas);
-        canvasContainer.getChildren().remove(selection);
+        selection.setVisible(false);
     }
 
     /**
@@ -203,9 +204,7 @@ public class MandelFX extends Application {
      */
     private void handleMouseDragged(MouseEvent e) {
         mouseDragged = true;
-        if (!canvasContainer.getChildren().contains(selection)) {
-            canvasContainer.getChildren().add(selection);
-        }
+        selection.setVisible(true);
         selection.setX(Math.min(startX, e.getX()));
         selection.setY(Math.min(startY, e.getY()));
         selection.setWidth(Math.abs(startX - e.getX()));
