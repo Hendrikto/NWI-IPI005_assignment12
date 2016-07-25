@@ -1,9 +1,12 @@
 package mandelfx;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -58,13 +61,14 @@ public class MandelFX extends Application {
     /**
      * Start the app.
      *
-     * @param primaryStage the primary stage
+     * @param stage the primary stage
      */
     @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Mandelbrot");
-        primaryStage.setScene(makeScene());
-        primaryStage.show();
+    public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("UI.fxml"));
+        stage.setTitle("Mandelbrot");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     /**
