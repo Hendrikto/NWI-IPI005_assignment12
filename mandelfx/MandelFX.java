@@ -10,8 +10,6 @@ import javafx.stage.Stage;
 /**
  *
  * @author Hendrik Werner // s4549775
- * @author Jasper Haasdijk // s4449754
- * @author Sjaak Smetsers
  */
 public class MandelFX extends Application {
 
