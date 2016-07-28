@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.canvas.*?>
@@ -11,7 +12,12 @@
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mandelfx.UIController">
    <children>
-      <Canvas fx:id="canvas" height="500.0" width="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Group>
+         <children>
+            <Canvas fx:id="canvas" height="1000.0" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" onMouseReleased="#handleMouseReleased" width="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Rectangle fx:id="selection" fill="TRANSPARENT" height="200.0" stroke="GREENYELLOW" visible="false" width="200.0" />
+         </children>
+      </Group>
       <VBox spacing="30.0">
          <children>
             <GridPane>
@@ -40,23 +46,23 @@
                   </Label>
                   <Label text="center x" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <Label text="center y" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="xInput">
+                  <TextField text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="xInput">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="yInput" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="yInput" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                   </TextField>
                   <Label prefHeight="0.0" prefWidth="20.0" text="size" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-                  <TextField fx:id="sizeInput" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <TextField fx:id="sizeInput" text="4" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" text="Draw" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <Button fx:id="drawButton" mnemonicParsing="false" onAction="#handleDraw" text="Draw" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                </children>
             </GridPane>
             <GridPane>
@@ -70,7 +76,7 @@
                      </GridPane.margin>
                   </Label>
                   <Label text="iterations" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="iterationsInput" onAction="#handleUpdateIterations" text="20" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
