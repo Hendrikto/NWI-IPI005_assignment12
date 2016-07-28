@@ -18,7 +18,7 @@ import mandelmodel.ColorMode;
 /**
  * FXML Controller class
  *
- * @author Hendrik
+ * @author Hendrik Werner // s4549775
  */
 public class UIController implements Initializable {
 
