@@ -1,14 +1,23 @@
 package mandelmodel;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
+
 /**
  * A map of Mandelbrot values.
  *
  * @author Hendrik Werner // s4549775
- * @author Jasper Haasdijk // s4449754
  */
 public class MandelbrotMap {
 
-    private final int[][] values;
+    private final IntegerProperty iterations = new SimpleIntegerProperty(0);
+    private final IntegerProperty size = new SimpleIntegerProperty(0);
+    private final ObjectProperty<Area> area = new SimpleObjectProperty<>(new Area(0, 0, 0, 0));
+
+    private int[][] values;
 
     /**
      * Get the Mandelbrot value at (a, b) using the given number of iterations.
@@ -31,22 +40,22 @@ public class MandelbrotMap {
         return iterations;
     }
 
-    /**
-     * @param area the area to calculate Mandelbrot values for
-     * @param size the width and height of the map
-     * @param iterations the maximum number of iterations
-     */
-    public MandelbrotMap(Area area, int size, int iterations) {
-        values = new int[size][size];
-        for (int x = 0; x < size; x++) {
-            for (int y = 0; y < size; y++) {
-                values[x][y] = getMandelbrotValue(
-                        area.upperLeftX + x * (area.width / size),
-                        area.upperLeftY + y * (area.height / size),
-                        iterations
-                );
-            }
-        }
+    public MandelbrotMap() {
+        iterations.addListener((observable, o, n) -> calculateMandelbrotValues());
+        area.addListener((observable, o, n) -> calculateMandelbrotValues());
+        size.addListener(this::handleSizeChange);
+    }
+
+    public IntegerProperty iterationsProperty() {
+        return iterations;
+    }
+
+    public IntegerProperty sizeProperty() {
+        return size;
+    }
+
+    public ObjectProperty<Area> areaProperty() {
+        return area;
     }
 
     /**
@@ -56,6 +65,30 @@ public class MandelbrotMap {
      */
     public int getValue(int x, int y) {
         return values[x][y];
+    }
+
+    /**
+     * Handle a size change by resizing the value array and updating the values.
+     */
+    private void handleSizeChange(ObservableValue<? extends Number> observable, Number o, Number n) {
+        values = new int[size.get()][size.get()];
+        calculateMandelbrotValues();
+    }
+
+    /**
+     * Calculate the Mandelbrot values.
+     */
+    private void calculateMandelbrotValues() {
+        Area areaValue = area.get();
+        for (int x = 0; x < size.get(); x++) {
+            for (int y = 0; y < size.get(); y++) {
+                values[x][y] = getMandelbrotValue(
+                        areaValue.getUpperLeftX() + x * (areaValue.getWidth() / size.get()),
+                        areaValue.getUpperLeftY() + y * (areaValue.getHeight() / size.get()),
+                        iterations.get()
+                );
+            }
+        }
     }
 
 }
