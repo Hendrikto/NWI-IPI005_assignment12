@@ -1,45 +1,60 @@
 package mandelmodel;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.paint.Color;
 
 /**
- * Converts indexes (ranging from 0 to maxColorIndex) to RGB colors
+ * Map Mandelbrot values to colors.
  *
  * @author Hendrik Werner // s4549775
- * @author Jasper Haasdijk // s4449754
- * @author Sjaak Smetsers
  */
 public class ColorMap {
 
-    private final Color[] rgbColors;
+    private final IntegerProperty iterations = new SimpleIntegerProperty();
+    private final ObjectProperty<ColorMode> mode = new SimpleObjectProperty<>();
 
-    /**
-     * Creates and fills the array with the specified size
-     *
-     * @param maxColorIndex the size of the table
-     * @param mode the color mode to use
-     */
-    public ColorMap(int maxColorIndex, ColorMode mode) {
-        rgbColors = new Color[maxColorIndex];
-        setColor(mode);
+    private Color[] rgbColors;
+
+    public ColorMap() {
+        mode.addListener((observable, o, n) -> calculateValues());
+        iterations.addListener(this::handleIterationsChange);
+    }
+
+    public IntegerProperty iterationsProperty() {
+        return iterations;
+    }
+
+    public ObjectProperty<ColorMode> modeProperty() {
+        return mode;
     }
 
     /**
-     * Fill the color map using the color mode.
+     * @param mandelValue the Mandelbrot value
+     * @return element of rgbColors at index mandelValue modulo the size of the array
      */
-    private void setColor(ColorMode mode) {
+    public Color getColor(int mandelValue) {
+        return rgbColors[mandelValue % rgbColors.length];
+    }
+
+    /**
+     * Handle an iterations change by resizing and updating the color array.
+     */
+    private void handleIterationsChange(ObservableValue<? extends Number> observable, Number o, Number n) {
+        rgbColors = new Color[iterations.get()];
+        calculateValues();
+    }
+
+    /**
+     * Update the color array.
+     */
+    private void calculateValues() {
         for (int i = 0; i < rgbColors.length; i++) {
-            rgbColors[i] = mode.getColor(i, rgbColors.length);
+            rgbColors[i] = mode.get().getColor(i, rgbColors.length);
         }
-    }
-
-    /**
-     * @param colorIndex the index of the requested color
-     * @return element of rgbColors at index colorIndex modulo the size of the
-     * array
-     */
-    public Color getColor(int colorIndex) {
-        return rgbColors[colorIndex % rgbColors.length];
     }
 
 }
