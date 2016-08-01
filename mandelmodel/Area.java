@@ -56,4 +56,32 @@ public class Area {
         return height;
     }
 
+    /**
+     * @return the upper left corner on the x-axis
+     */
+    public double getUpperLeftX() {
+        return upperLeftX.get();
+    }
+
+    /**
+     * @return the upper left corner on the y-axis
+     */
+    public double getUpperLeftY() {
+        return upperLeftY.get();
+    }
+
+    /**
+     * @return the width
+     */
+    public double getWidth() {
+        return width.get();
+    }
+
+    /**
+     * @return the height
+     */
+    public double getHeight() {
+        return height.get();
+    }
+
 }
