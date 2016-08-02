@@ -14,7 +14,7 @@ public class MandelbrotMap {
     private final IntegerProperty iterations = new SimpleIntegerProperty(0);
     private final IntegerProperty size = new SimpleIntegerProperty(0);
 
-    private final Area area = new Area(0, 0, 0, 0);
+    private final Area area = new Area(-2, -2, 4, 4);
 
     private int[][] values;
 
