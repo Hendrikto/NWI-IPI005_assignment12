@@ -20,8 +20,8 @@ public class ColorMap {
     private final ObservableList<Color> colors = FXCollections.observableArrayList();
 
     public ColorMap() {
-        mode.addListener((observable, o, n) -> calculateValues());
-        iterations.addListener((observable, o, n) -> calculateValues());
+        mode.addListener((observable, o, n) -> updateColors());
+        iterations.addListener((observable, o, n) -> updateColors());
     }
 
     public IntegerProperty iterationsProperty() {
@@ -43,7 +43,7 @@ public class ColorMap {
     /**
      * Update the color list.
      */
-    private void calculateValues() {
+    private void updateColors() {
         ColorMode colorMode = mode.get();
         int iterationsValue = iterations.get();
         Color[] rgbColors = new Color[iterationsValue];
