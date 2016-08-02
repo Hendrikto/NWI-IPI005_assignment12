@@ -41,7 +41,6 @@ public class MandelbrotMap {
 
     public MandelbrotMap() {
         iterations.addListener((observable, o, n) -> calculateMandelbrotValues());
-        area.addListener((observable, o, n) -> calculateMandelbrotValues());
         size.addListener(this::handleSizeChange);
     }
 
@@ -78,12 +77,11 @@ public class MandelbrotMap {
      * Calculate the Mandelbrot values.
      */
     private void calculateMandelbrotValues() {
-        Area areaValue = area.get();
         for (int x = 0; x < size.get(); x++) {
             for (int y = 0; y < size.get(); y++) {
                 values[x][y] = getMandelbrotValue(
-                        areaValue.getUpperLeftX() + x * (areaValue.getWidth() / size.get()),
-                        areaValue.getUpperLeftY() + y * (areaValue.getHeight() / size.get()),
+                        area.getUpperLeftX() + x * (area.getWidth() / size.get()),
+                        area.getUpperLeftY() + y * (area.getHeight() / size.get()),
                         iterations.get()
                 );
             }
