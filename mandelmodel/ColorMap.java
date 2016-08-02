@@ -32,6 +32,10 @@ public class ColorMap {
         return mode;
     }
 
+    public ObservableList<Color> getColors() {
+        return colors;
+    }
+
     /**
      * @param mandelValue the Mandelbrot value
      * @return element of rgbColors at index mandelValue modulo the size of the array
