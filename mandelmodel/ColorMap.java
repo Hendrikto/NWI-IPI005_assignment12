@@ -4,7 +4,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
 /**
@@ -16,12 +17,11 @@ public class ColorMap {
 
     private final IntegerProperty iterations = new SimpleIntegerProperty();
     private final ObjectProperty<ColorMode> mode = new SimpleObjectProperty<>();
-
-    private Color[] rgbColors;
+    private final ObservableList<Color> colors = FXCollections.observableArrayList();
 
     public ColorMap() {
         mode.addListener((observable, o, n) -> calculateValues());
-        iterations.addListener(this::handleIterationsChange);
+        iterations.addListener((observable, o, n) -> calculateValues());
     }
 
     public IntegerProperty iterationsProperty() {
@@ -37,24 +37,20 @@ public class ColorMap {
      * @return element of rgbColors at index mandelValue modulo the size of the array
      */
     public Color getColor(int mandelValue) {
-        return rgbColors[mandelValue % rgbColors.length];
+        return colors.get(mandelValue % iterations.get());
     }
 
     /**
-     * Handle an iterations change by resizing and updating the color array.
-     */
-    private void handleIterationsChange(ObservableValue<? extends Number> observable, Number o, Number n) {
-        rgbColors = new Color[iterations.get()];
-        calculateValues();
-    }
-
-    /**
-     * Update the color array.
+     * Update the color list.
      */
     private void calculateValues() {
-        for (int i = 0; i < rgbColors.length; i++) {
-            rgbColors[i] = mode.get().getColor(i, rgbColors.length);
+        ColorMode colorMode = mode.get();
+        int iterationsValue = iterations.get();
+        Color[] rgbColors = new Color[iterationsValue];
+        for (int i = 0; i < iterationsValue; i++) {
+            rgbColors[i] = colorMode.getColor(i, iterationsValue);
         }
+        colors.setAll(rgbColors);
     }
 
 }
