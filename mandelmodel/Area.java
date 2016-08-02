@@ -10,10 +10,10 @@ import javafx.beans.property.SimpleDoubleProperty;
  */
 public class Area {
 
-    private final DoubleProperty upperLeftX;
-    private final DoubleProperty upperLeftY;
-    private final DoubleProperty width;
-    private final DoubleProperty height;
+    private final DoubleProperty upperLeftX = new SimpleDoubleProperty();
+    private final DoubleProperty upperLeftY = new SimpleDoubleProperty();
+    private final DoubleProperty width = new SimpleDoubleProperty();
+    private final DoubleProperty height = new SimpleDoubleProperty();
 
     /**
      * @param upperLeftX the initial x value of the upper left corner of the area
@@ -22,10 +22,10 @@ public class Area {
      * @param height the initial height of the area
      */
     public Area(double upperLeftX, double upperLeftY, double width, double height) {
-        this.upperLeftX = new SimpleDoubleProperty(upperLeftX);
-        this.upperLeftY = new SimpleDoubleProperty(upperLeftY);
-        this.width = new SimpleDoubleProperty(width);
-        this.height = new SimpleDoubleProperty(height);
+        this.upperLeftX.set(upperLeftX);
+        this.upperLeftY.set(upperLeftY);
+        this.width.set(width);
+        this.height.set(height);
     }
 
     /**
