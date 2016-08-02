@@ -1,9 +1,7 @@
 package mandelmodel;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 
 /**
@@ -15,7 +13,8 @@ public class MandelbrotMap {
 
     private final IntegerProperty iterations = new SimpleIntegerProperty(0);
     private final IntegerProperty size = new SimpleIntegerProperty(0);
-    private final ObjectProperty<Area> area = new SimpleObjectProperty<>(new Area(0, 0, 0, 0));
+
+    private final Area area = new Area(0, 0, 0, 0);
 
     private int[][] values;
 
@@ -54,7 +53,7 @@ public class MandelbrotMap {
         return size;
     }
 
-    public ObjectProperty<Area> areaProperty() {
+    public Area getArea() {
         return area;
     }
 
