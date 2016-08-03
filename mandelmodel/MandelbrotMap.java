@@ -43,10 +43,10 @@ public class MandelbrotMap {
 
     public MandelbrotMap() {
         iterations.addListener((observable, o, n) -> calculateMandelbrotValues());
-        area.upperLeftXProperty().addListener((observable, o, n) -> calculateMandelbrotValues());
-        area.upperLeftYProperty().addListener((observable, o, n) -> calculateMandelbrotValues());
-        area.widthProperty().addListener((observable, o, n) -> calculateMandelbrotValues());
-        area.heightProperty().addListener((observable, o, n) -> calculateMandelbrotValues());
+        area.get().upperLeftXProperty().addListener((observable, o, n) -> calculateMandelbrotValues());
+        area.get().upperLeftYProperty().addListener((observable, o, n) -> calculateMandelbrotValues());
+        area.get().widthProperty().addListener((observable, o, n) -> calculateMandelbrotValues());
+        area.get().heightProperty().addListener((observable, o, n) -> calculateMandelbrotValues());
         area.addListener((observable, o, n) -> calculateMandelbrotValues());
         size.addListener(this::handleSizeChange);
     }
